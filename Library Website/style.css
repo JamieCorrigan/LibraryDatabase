@@ -1,0 +1,72 @@
+body {
+  background-image: url(../Project/loginbackround.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.FormBox {
+    width: 80%;
+    max-width: 900px;
+    padding: 20px;
+    margin: 120px auto 40px auto;
+    overflow-x: auto; 
+    position: relative; 
+    transform: none;
+    left: auto;
+    top: auto;
+    border-radius: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+}
+
+.Title {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    background-color: white;
+}
+
+.nav-left, .nav-right {
+    flex: 1;
+}
+
+.nav-center {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    word-wrap: break-word;
+}
+
+footer {
+    background: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+
+}
