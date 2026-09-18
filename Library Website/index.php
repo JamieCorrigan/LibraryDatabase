@@ -128,7 +128,7 @@
                 $stmt->close();
 
                 // Get books
-                $sql = "SELECT b.ISBN, b.BookTitle, b.Author, c.CategoryDescription
+                $sql = "SELECT b.ISBN, b.BookTitle, b.Author, b.Reserved, c.CategoryDescription
                         FROM books b
                         LEFT JOIN category c ON b.CategoryID = c.CategoryID ";
                 if ($sqlWhere) $sql .= $sqlWhere . " ";
@@ -157,12 +157,16 @@
                         echo "<tr>";
                         echo "<td>" . htmlentities($row['BookTitle']) . "</td>";
                         echo "<td>" . htmlentities($row['Author']) . "</td>";
-                        echo "<td>
-                                <form method='POST' action='reserve.php'>
+                        echo "<td>";
+                        if ($row['Reserved'] === 'Y') {
+                            echo "<button disabled>Reserved</button>";
+                        } else {
+                            echo "<form method='POST' action='reserve.php'>
                                     <input type='hidden' name='isbn' value='" . htmlentities($row['ISBN']) . "'>
                                     <button type='submit'>Reserve</button>
-                                </form>
-                            </td>";
+                                </form>";
+                        }
+                        echo "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";

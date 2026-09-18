@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <titl>Reserved Books</title>
+        <title>Reserved Books</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <header>
@@ -42,19 +42,22 @@
             if (isset($_POST['cancel']) && isset($_POST['isbn'])) {
                 $isbn = $_POST['isbn'];
                 $username = $_SESSION['Username'];
-                //Compare to db
-                $deleteSql = "DELETE FROM reservations WHERE ISBN = ? AND Username = ?";
+
+                $deleteSql = "DELETE FROM reservations WHERE ISBN = ? AND username = ?";
                 $stmt = $conn->prepare($deleteSql);
                 $stmt->bind_param("ss", $isbn, $username);
 
-                //Return result
                 if ($stmt->execute()) {
+                    // Free the book back up
+                    $resetStmt = $conn->prepare("UPDATE books SET Reserved = 'N' WHERE ISBN = ?");
+                    $resetStmt->bind_param("s", $isbn);
+                    $resetStmt->execute();
+
                     $msg = "Reservation canceled successfully.";
                 } else {
                     $msg = "Error canceling reservation: " . $conn->error;
                 }
 
-                // Redirect
                 header("Location: viewres.php?msg=" . urlencode($msg));
                 exit();
             }

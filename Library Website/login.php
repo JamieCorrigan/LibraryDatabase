@@ -26,7 +26,7 @@ session_start();
         </form>
 
         <!-- Register redirect -->
-        <h3>No account? Register <a href="register.php">here.<href>
+        <h3>No account? Register <a href="register.php">here.</a><h3>
 
     </div>
     </body>
